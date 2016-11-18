@@ -2,15 +2,19 @@
 
 var AllItems = React.createClass({ 
 
-	getInitialState() { 
-		return { items: [] }
+
+	handleEdit() {
+
 	},
 
-	componentDidMount() { 
-		//console.log('Component mounted');
-		$.getJSON('/api/v1/items.json', (response) => { this.setState({ items: response }) });
-	}, 
+	onUpdate(item) {
+    this.props.onUpdate(item);
+	},
 
+	handleDelete(id) {
+  //console.log('delete item clicked');
+  	this.props.handleDelete(id);
+  },
 
   // We’re going to iterate through them in our render() method.
 	render() { 
@@ -20,8 +24,12 @@ var AllItems = React.createClass({
 			// A way to identify each item into the component’s DOM. 
 			// Unique attribute of each item, also known as key
 				<div key={item.id}> 
-					<h3>{item.name}</h3> 
-					<p>{item.description}</p> 
+					{/* <h3>{item.name}</h3>*/} 
+					{/* <p>{item.description}</p>*/} 
+					<Item item={item}
+            handleDelete={this.handleDelete.bind(this, item.id)}
+            //handleEdit={this.handleEdit}/>
+            handleUpdate={this.onUpdate}/>
 				</div> 
 			) 
 		}); 
