@@ -14,7 +14,8 @@ var AllItems = React.createClass({
 
   // We’re going to iterate through them in our render() method.
 	render() { 
-		var items= this.state.items.map((item) => { 
+		//var items= this.state.items.map - change state to props
+		var items= this.props.items.map((item) => { 
 			return (
 			// A way to identify each item into the component’s DOM. 
 			// Unique attribute of each item, also known as key
